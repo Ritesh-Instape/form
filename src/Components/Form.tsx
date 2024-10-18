@@ -1,8 +1,8 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Input, Button, Form } from "rsuite";
+import { Button, Form } from "rsuite";
 import Field from "./Field";
-import { Grid, Row, Col } from "rsuite";
+import { Row, Col } from "rsuite";
 import "../App.css";
 import { SelectPicker } from "rsuite";
 
@@ -97,7 +97,6 @@ const FormAll = () => {
     return { label: ele, value: ele };
   });
 
-
   async function adddata(data: formdataAll) {
     try {
       let res = await fetch("https://ins-f-backend.onrender.com/form/create", {
@@ -145,7 +144,7 @@ const FormAll = () => {
               name="empcode"
               control={control}
               rules={{ required: "Empcode is required" }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -165,7 +164,7 @@ const FormAll = () => {
               rules={{
                 required: "Firstname is required",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -180,7 +179,7 @@ const FormAll = () => {
             <Controller
               name="middlename"
               control={control}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -195,7 +194,7 @@ const FormAll = () => {
             <Controller
               name="lastname"
               control={control}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -221,7 +220,7 @@ const FormAll = () => {
                   message: "required valid email",
                 },
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -236,7 +235,7 @@ const FormAll = () => {
             <Controller
               name="fathername"
               control={control}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -298,7 +297,7 @@ const FormAll = () => {
             <Controller
               name="designation"
               control={control}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -313,7 +312,7 @@ const FormAll = () => {
             <Controller
               name="dcode"
               control={control}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -376,7 +375,7 @@ const FormAll = () => {
               rules={{
                 required: "required monthly salary",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   type="number"
                   field={field}
@@ -418,7 +417,7 @@ const FormAll = () => {
               rules={{
                 required: "required bank account number",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   type="number"
                   field={field}
@@ -439,7 +438,7 @@ const FormAll = () => {
               rules={{
                 required: "required IFSC code",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -460,7 +459,7 @@ const FormAll = () => {
               rules={{
                 required: "required bank name",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -480,7 +479,7 @@ const FormAll = () => {
               rules={{
                 required: "required office city",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -500,7 +499,7 @@ const FormAll = () => {
               rules={{
                 required: "required office state",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -520,7 +519,7 @@ const FormAll = () => {
               rules={{
                 required: "required office address1",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -537,7 +536,9 @@ const FormAll = () => {
             <Controller
               name="oaddress2"
               control={control}
-              render={({ field, fieldState }) => (
+              render={({ field
+                
+               }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -552,7 +553,7 @@ const FormAll = () => {
             <Controller
               name="oaddress3"
               control={control}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   field={field}
                   error={errors[field.name]?.message}
@@ -572,7 +573,7 @@ const FormAll = () => {
               rules={{
                 required: "required valid pincode",
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   type="number"
                   field={field}
