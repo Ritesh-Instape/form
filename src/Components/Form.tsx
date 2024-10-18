@@ -4,23 +4,22 @@ import { Input, Button, Form } from "rsuite";
 import Field from "./Field";
 import { Grid, Row, Col } from "rsuite";
 import "../App.css";
-import { DatePicker } from "rsuite";
 import { SelectPicker } from "rsuite";
 
-type formdataAll = {
+export type formdataAll = {
   empcode: string;
   firstname: string;
   middlename: string;
   lastname: string;
   email: string;
   fathername: string;
-  mobilenumber: string;
+  mobilenumber: number;
   dob: Date;
   designation: string;
   dcode: string;
   doj: Date;
   dol: Date;
-  salary: string;
+  salary: number;
   gender: string;
   bno: string;
   ifsc: string;
@@ -30,7 +29,7 @@ type formdataAll = {
   oaddress1: string;
   oaddress2: string;
   oaddress3: string;
-  pincode: string;
+  pincode: number;
   estatus: string;
 };
 const FormAll = () => {
@@ -42,11 +41,11 @@ const FormAll = () => {
     email: "",
     fathername: "",
     mobilenumber: "",
-    dob: null,
+    dob: "",
     designation: "",
     dcode: "",
-    doj: null,
-    dol: null,
+    doj: "",
+    dol: "",
     salary: "",
     gender: "",
     bno: "",
@@ -74,9 +73,9 @@ const FormAll = () => {
     console.log("empcode is : ", data.empcode);
     console.log("firstname is : ", data.firstname);
     console.log("mobile no is : ", data.mobilenumber);
-    console.log("date of birth : ", data.dob.toLocaleDateString());
-    console.log("date of joining is : ", data.doj.toLocaleDateString());
-    console.log("date of leaving is : ", data.dol.toLocaleDateString());
+    console.log("date of birth : ", data.dob);
+    console.log("date of joining is : ", data.doj);
+    console.log("date of leaving is : ", data.dol);
     console.log("salary is : ", data.salary);
     console.log("gender is : ", data.gender);
     console.log("account number is : ", data.bno);
@@ -90,6 +89,15 @@ const FormAll = () => {
     adddata(data);
   }
 
+  const data1 = ["Male", "Female"].map((ele) => {
+    return { label: ele, value: ele };
+  });
+
+  const data2 = ["Intern", "Full Time"].map((ele) => {
+    return { label: ele, value: ele };
+  });
+
+
   async function adddata(data: formdataAll) {
     try {
       let res = await fetch("https://ins-f-backend.onrender.com/form/create", {
@@ -100,7 +108,7 @@ const FormAll = () => {
           firstname: data.firstname,
           mobileno: data.mobilenumber,
           email: data.email,
-          DOJ: data.doj.toLocaleDateString(),
+          DOJ: data.doj,
           salary: data.salary,
           gender: data.gender,
           accno: data.bno,
@@ -156,7 +164,6 @@ const FormAll = () => {
               control={control}
               rules={{
                 required: "Firstname is required",
-                // pattern: { value: /\S+@\S+\.\S+/, message: "Invalid email" },
               }}
               render={({ field, fieldState }) => (
                 <Field
@@ -173,7 +180,6 @@ const FormAll = () => {
             <Controller
               name="middlename"
               control={control}
-              // rules={{ required: "Name is required" }}
               render={({ field, fieldState }) => (
                 <Field
                   field={field}
@@ -189,7 +195,6 @@ const FormAll = () => {
             <Controller
               name="lastname"
               control={control}
-              // rules={{ required: "Name is required" }}
               render={({ field, fieldState }) => (
                 <Field
                   field={field}
@@ -231,7 +236,6 @@ const FormAll = () => {
             <Controller
               name="fathername"
               control={control}
-              // rules={{ required: "Name is required" }}
               render={({ field, fieldState }) => (
                 <Field
                   field={field}
@@ -256,7 +260,7 @@ const FormAll = () => {
                   message: "required valid mobile number",
                 },
               }}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <Field
                   type="number"
                   field={field}
@@ -267,25 +271,25 @@ const FormAll = () => {
             />
           </Col>
 
-          <Col xs={6} className="disIs" style={{ paddingTop: "14px" }}>
+          <Col xs={6} className="disIs">
             <label className="formhead">
               DOB <span className="requiredIs">*</span>
             </label>
             <Controller
               name="dob"
               control={control}
-              rules={{ required: "Date of birth is required" }}
+              rules={{
+                required: "required valid dte of birth",
+              }}
               render={({ field }) => (
-                <DatePicker
-                  {...field}
-                  oneTap
-                  style={{ width: "100%" }}
-                  placeholder="Select date of birth"
-                  onChange={(value) => field.onChange(value)}
+                <Field
+                  type="date"
+                  field={field}
+                  error={errors[field.name]?.message}
+                  placeholder="Enter date of birth"
                 />
               )}
             />
-            <p className="errorIs">{errors.dob?.message}</p>
           </Col>
 
           {/* 3 */}
@@ -294,7 +298,6 @@ const FormAll = () => {
             <Controller
               name="designation"
               control={control}
-              // rules={{ required: "Name is required" }}
               render={({ field, fieldState }) => (
                 <Field
                   field={field}
@@ -310,7 +313,6 @@ const FormAll = () => {
             <Controller
               name="dcode"
               control={control}
-              // rules={{ required: "Name is required" }}
               render={({ field, fieldState }) => (
                 <Field
                   field={field}
@@ -321,46 +323,46 @@ const FormAll = () => {
             />
           </Col>
 
-          <Col xs={6} className="disIs" style={{ paddingTop: "14px" }}>
+          <Col xs={6} className="disIs">
             <label className="formhead">
               Date of joining <span className="requiredIs">*</span>
             </label>
             <Controller
               name="doj"
               control={control}
-              rules={{ required: "Date of joining is required" }}
+              rules={{
+                required: "required valid dte of birth",
+              }}
               render={({ field }) => (
-                <DatePicker
-                  {...field}
-                  oneTap
-                  style={{ width: "100%" }}
-                  placeholder="Enter date of joining"
-                  onChange={(value) => field.onChange(value)}
+                <Field
+                  type="date"
+                  field={field}
+                  error={errors[field.name]?.message}
+                  placeholder="Enter date of birth"
                 />
               )}
             />
-            <p className="errorIs">{errors.doj?.message}</p>
           </Col>
 
-          <Col xs={6} className="disIs" style={{ paddingTop: "14px" }}>
+          <Col xs={6} className="disIs">
             <label className="formhead">
               Date of leaving <span className="requiredIs">*</span>
             </label>
             <Controller
               name="dol"
               control={control}
-              rules={{ required: "Date of leaving is required" }}
+              rules={{
+                required: "required valid dte of birth",
+              }}
               render={({ field }) => (
-                <DatePicker
-                  {...field}
-                  oneTap
-                  style={{ width: "100%" }}
-                  placeholder="Enter date of leaving"
-                  onChange={(value) => field.onChange(value)}
+                <Field
+                  type="date"
+                  field={field}
+                  error={errors[field.name]?.message}
+                  placeholder="Enter date of birth"
                 />
               )}
             />
-            <p className="errorIs">{errors.dol?.message}</p>
           </Col>
 
           {/* 4 */}
@@ -392,17 +394,13 @@ const FormAll = () => {
             <Controller
               name="gender"
               control={control}
-              rules={{ required: "gender is required" }}
+              rules={{ required: "employee status required" }}
               render={({ field }) => (
                 <SelectPicker
-                  {...field}
-                  data={[
-                    { label: "Male", value: "Male" },
-                    { label: "Female", value: "Female" },
-                  ]}
-                  placeholder="Select gender"
-                  searchable={false}
                   style={{ width: "100%" }}
+                  data={data1}
+                  searchable={false}
+                  value={field.value}
                   onChange={(value) => field.onChange(value)}
                 />
               )}
@@ -595,14 +593,10 @@ const FormAll = () => {
               rules={{ required: "employee status required" }}
               render={({ field }) => (
                 <SelectPicker
-                  {...field}
-                  data={[
-                    { label: "Intern", value: "Intern" },
-                    { label: "Full Time", value: "Full Time" },
-                  ]}
-                  placeholder="Select status"
-                  searchable={false}
                   style={{ width: "100%" }}
+                  value={field.value}
+                  data={data2}
+                  searchable={false}
                   onChange={(value) => field.onChange(value)}
                 />
               )}
@@ -635,8 +629,6 @@ const FormAll = () => {
             Reset
           </Button>
         </div>
-
-        
       </Form>
     </div>
   );
