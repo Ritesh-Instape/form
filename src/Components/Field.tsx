@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { Input, Button, Form } from "rsuite";
+
+import { Input,Form } from "rsuite";
 import "../App.css";
 
 type FieldProps = {
-  as: React.ElementType;
+  as: React.ElementType | undefined;
   field: any ;
   error: string | undefined;
   [key: string]: any;
 };
+
+
+
 
 const Field = ({
   as: Component = Input,

@@ -1,6 +1,5 @@
-import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Form } from "rsuite";
+import { Button, Input } from "rsuite";
 import Field from "./Field";
 import { Row, Col } from "rsuite";
 import "../App.css";
@@ -13,13 +12,13 @@ export type formdataAll = {
   lastname: string;
   email: string;
   fathername: string;
-  mobilenumber: number;
-  dob: Date;
+  mobilenumber: string;
+  dob: string;
   designation: string;
   dcode: string;
-  doj: Date;
-  dol: Date;
-  salary: number;
+  doj: string;
+  dol: string;
+  salary: string;
   gender: string;
   bno: string;
   ifsc: string;
@@ -29,11 +28,11 @@ export type formdataAll = {
   oaddress1: string;
   oaddress2: string;
   oaddress3: string;
-  pincode: number;
+  pincode: string;
   estatus: string;
 };
 const FormAll = () => {
-  const defaultValues = {
+  const defaultValues:formdataAll = {
     empcode: "",
     firstname: "",
     middlename: "",
@@ -121,7 +120,7 @@ const FormAll = () => {
         }),
       });
 
-      console.log("done");
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -134,7 +133,7 @@ const FormAll = () => {
   return (
     <div style={{ width: "95%", margin: "auto" }}>
       <p className="formTypehead">Add Employee</p>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Row className="show-grid">
           <Col xs={6}>
             <label className="formhead">
@@ -146,6 +145,7 @@ const FormAll = () => {
               rules={{ required: "Empcode is required" }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter employee code"
@@ -166,6 +166,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter first name"
@@ -181,6 +182,7 @@ const FormAll = () => {
               control={control}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter middle name"
@@ -196,6 +198,7 @@ const FormAll = () => {
               control={control}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter last name"
@@ -222,6 +225,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter email"
@@ -237,6 +241,7 @@ const FormAll = () => {
               control={control}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter father name"
@@ -261,6 +266,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   type="number"
                   field={field}
                   error={errors[field.name]?.message}
@@ -282,6 +288,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   type="date"
                   field={field}
                   error={errors[field.name]?.message}
@@ -299,6 +306,7 @@ const FormAll = () => {
               control={control}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter designation"
@@ -314,6 +322,7 @@ const FormAll = () => {
               control={control}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter designation code"
@@ -334,6 +343,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   type="date"
                   field={field}
                   error={errors[field.name]?.message}
@@ -355,6 +365,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   type="date"
                   field={field}
                   error={errors[field.name]?.message}
@@ -377,6 +388,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   type="number"
                   field={field}
                   error={errors[field.name]?.message}
@@ -419,6 +431,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   type="number"
                   field={field}
                   error={errors[field.name]?.message}
@@ -440,6 +453,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter IFSC code"
@@ -461,6 +475,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter bank name"
@@ -481,6 +496,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter office city"
@@ -501,6 +517,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter office state"
@@ -521,6 +538,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter office address1"
@@ -536,10 +554,9 @@ const FormAll = () => {
             <Controller
               name="oaddress2"
               control={control}
-              render={({ field
-                
-               }) => (
+              render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter office address2"
@@ -555,6 +572,7 @@ const FormAll = () => {
               control={control}
               render={({ field }) => (
                 <Field
+                as={Input}
                   field={field}
                   error={errors[field.name]?.message}
                   placeholder="Enter office address3"
@@ -575,6 +593,7 @@ const FormAll = () => {
               }}
               render={({ field }) => (
                 <Field
+                as={Input}
                   type="number"
                   field={field}
                   error={errors[field.name]?.message}
@@ -630,7 +649,7 @@ const FormAll = () => {
             Reset
           </Button>
         </div>
-      </Form>
+      </form>
     </div>
   );
 };
