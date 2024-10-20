@@ -3,21 +3,16 @@ import { Input,Form } from "rsuite";
 import "../App.css";
 
 type FieldProps = {
-  as: React.ElementType | undefined;
+  as: React.ElementType;
   field: any ;
-  error: string | undefined;
+  error?: string;
   [key: string]: any;
 };
 
 
 
 
-const Field = ({
-  as: Component = Input,
-  field,
-  error,
-  ...rest
-}: FieldProps) => {
+const Field = ({as: Component = Input,field,error, ...rest}: FieldProps) => {
   return (
     <Form.Group className="formdis">
       <Component
